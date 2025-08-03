@@ -32,6 +32,7 @@ if __name__ == '__main__':
     torch.cuda.manual_seed(123)
 
     args = args_parser()
+    print(f'args gpu: {args.gpu}')
     args.device = torch.device('cuda:{}'.format(args.gpu) if torch.cuda.is_available() and args.gpu != -1 else 'cpu')
     dict_users = {}
     dataset_train, dataset_test = None, None
@@ -139,6 +140,11 @@ if __name__ == '__main__':
         t_start = time.time()
         w_locals, loss_locals, weight_locols = [], [], []
         # round-robin selection
+        """
+        TODO:
+        OTA 환경으로 변경 - PS 는 단지 신호가 LC 된 결과만 확인할 수 있도록
+        round-robin -> decentralized sampling
+        """
         begin_index = (iter % loop_index) * m
         end_index = begin_index + m
         idxs_users = all_clients[begin_index:end_index]
