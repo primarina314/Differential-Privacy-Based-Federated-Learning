@@ -144,6 +144,7 @@ if __name__ == '__main__':
         TODO:
         OTA 환경으로 변경 - PS 는 단지 신호가 LC 된 결과만 확인할 수 있도록
         round-robin -> decentralized sampling
+        grad 를 보내는 걸 서버 입장에서 결과적으로 weight 평균으로 업데이트된다 라고 보고 작성된건가.
         """
         begin_index = (iter % loop_index) * m
         end_index = begin_index + m
